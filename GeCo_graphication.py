@@ -173,4 +173,4 @@ main()
 
 
 # E.g.
-# ipython synteny.py -- --cluster 001_756_949 --notation KEGG
+# ipython GeCo_graphication.py -- --cluster 001_756_949 --notation KEGG
