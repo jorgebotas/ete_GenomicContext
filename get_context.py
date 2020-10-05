@@ -773,5 +773,5 @@ def main():
     gmgc = sys.argv[1]
     launch_analysis(gmgc, 10, 30)
 
-if __name__ == main():
-    main()
+# if __name__ == main():
+    # main()
