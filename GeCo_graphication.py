@@ -13,6 +13,9 @@ from qt import (QBrush, QPen, QColor, QPixmap, QPainter, Qt, QRect,
                 QPainterPath)
 
 
+from get_context import launch_analysis
+
+
 def get_operons_from_json(inputfile):
     with open(inputfile, "r") as handler:
         ops = loads(handler.read())
@@ -155,11 +158,11 @@ def main():
         nside = 10
     notation = args.notation
     level = args.level
+    launch_analysis(cluster,
+                          nside,
+                          30,
+                          True)
     operons = get_operons_from_json(operon_file)
-    # operons = launch_analysis(cluster,
-                              # nside,
-                              # 30,
-                              # True)
     unique_notation = get_unique_notation(operons, notation, level)
     palette = get_palette(colors_file, list(unique_notation.keys()))
 
@@ -168,6 +171,7 @@ def main():
     ts = style_tree(ts, unique_notation, palette)
 
     t.render(output_file + ".png", dpi=1200, tree_style=ts)
+
 
 main()
 
