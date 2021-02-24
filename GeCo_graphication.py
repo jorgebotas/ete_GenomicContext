@@ -15,12 +15,10 @@ from qt import (QBrush, QPen, QColor, QPixmap, QPainter, Qt, QRect,
 
 from get_context import launch_analysis
 
-
 def get_operons_from_json(inputfile):
     with open(inputfile, "r") as handler:
         ops = loads(handler.read())
     return eval(ops)
-
 
 def get_unique_notation(operons, notation, level):
     unique = {}
@@ -31,7 +29,6 @@ def get_unique_notation(operons, notation, level):
                            **get_notation(gene, notation, level)
                          }
     return unique
-
 
 def get_notation(gene, notation, level):
     unique = {}
@@ -47,7 +44,6 @@ def get_notation(gene, notation, level):
                 unique[f] = ""
     return unique
 
-
 def get_palette(colors_file, unique_notation):
     with open(colors_file, "r") as handle:
         colors = eval(handle.read())
@@ -59,7 +55,6 @@ def get_palette(colors_file, unique_notation):
              range(len(unique_notation))
     }
     return palette
-
 
 def arrow_layout(node):
     if node.is_leaf():
@@ -82,7 +77,6 @@ def arrow_layout(node):
                     geneFace = ArrowFace(30, 20, strand, colors)
                     add_face_to_node(geneFace, node,
                                      column=pos+nside, position="aligned")
-
 
 def style_tree(ts, unique_notation, palette=False):
     ts.show_branch_support = True
@@ -107,7 +101,6 @@ def style_tree(ts, unique_notation, palette=False):
         ts.legend_position = 4
     return ts
 
-
 def arg_parser():
 
     parser = argparse.ArgumentParser(description='Genomic context \
@@ -128,7 +121,6 @@ def arg_parser():
 
     args = parser.parse_args()
     return args
-
 
 def main():
 
@@ -171,7 +163,6 @@ def main():
     ts = style_tree(ts, unique_notation, palette)
 
     t.render(output_file + ".png", dpi=1200, tree_style=ts)
-
 
 main()
 
